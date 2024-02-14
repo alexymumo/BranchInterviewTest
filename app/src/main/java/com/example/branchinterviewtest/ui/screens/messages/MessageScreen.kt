@@ -53,10 +53,3 @@ fun MessageList(
   }
 }
 
-/*
-@Composable
-fun MessageCard(messages: Messages) {
-  Text(text = messages.body, modifier = Modifier.fillMaxWidth())
-}
-
- */

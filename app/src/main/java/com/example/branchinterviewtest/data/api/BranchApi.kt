@@ -24,8 +24,9 @@ interface BranchApi {
 
   @POST("api/messages")
   suspend fun sendMessage(
-    @Header("X-Branch-Auth-Token") authToken: String
-  ) : Message
+    @Header("X-Branch-Auth-Token") authToken: String,
+    @Body message: Message
+  ) : Messages
 
   @POST("api/reset")
   suspend fun deleteMessages(

@@ -18,6 +18,12 @@ class MessagesViewModel @Inject constructor(private val messagesRepository: Mess
     getMessages()
   }
 
+  fun deleteMessages() {
+    viewModelScope.launch {
+      messagesRepository.deleteMessages()
+    }
+  }
+
   private fun getMessages() {
     viewModelScope.launch {
       _messages.value = messagesRepository.getMessages()!!

@@ -8,13 +8,18 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CardElevation
+import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -22,31 +27,42 @@ import com.example.branchinterviewtest.data.models.Messages
 
 @Composable
 fun MessageCard(messages: Messages, onNavigate: (Messages) ->Unit) {
-  Card(
+  ElevatedCard(
     modifier = Modifier
       .fillMaxWidth()
-      .height(100.dp)
-      .padding(all = 4.dp).clickable {
+      .wrapContentHeight()
+      .padding(all = 4.dp)
+      .clickable {
         onNavigate(messages)
       },
-    shape = RoundedCornerShape(10.dp)
+    shape = RoundedCornerShape(10.dp),
+    elevation = CardDefaults.cardElevation(
+      defaultElevation = 6.dp
+    )
   ) {
     Row(
-      horizontalArrangement = Arrangement.spacedBy(10.dp)
+      horizontalArrangement = Arrangement.spacedBy(10.dp),
+      modifier = Modifier.padding(4.dp)
     ) {
       Column {
         Text(
           text = "ID",
-          color = MaterialTheme.colorScheme.onBackground,
-          fontSize = 18.sp
+          color = MaterialTheme.colorScheme.onSurfaceVariant,
+          fontSize = 18.sp,
+          fontWeight = FontWeight.Bold
         )
-        Text(text = messages.id.toString())
+        Text(
+          text = messages.id.toString(),
+          fontWeight = FontWeight.Medium,
+          fontSize = 16.sp
+        )
       }
       Column {
         Text(
           text = "Body",
           color = MaterialTheme.colorScheme.onBackground,
           fontSize = 18.sp,
+          fontWeight = FontWeight.Bold
         )
         Text(
           text = messages.body,
