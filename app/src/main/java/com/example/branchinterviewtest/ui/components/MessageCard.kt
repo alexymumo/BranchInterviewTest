@@ -13,17 +13,20 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CardElevation
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.branchinterviewtest.data.models.Messages
+import com.example.branchinterviewtest.utils.DateUtil.convertDate
 
 @Composable
 fun MessageCard(messages: Messages, onNavigate: (Messages) ->Unit) {
@@ -59,7 +62,7 @@ fun MessageCard(messages: Messages, onNavigate: (Messages) ->Unit) {
       }
       Column {
         Text(
-          text = "Body",
+          text = "Message",
           color = MaterialTheme.colorScheme.onBackground,
           fontSize = 18.sp,
           fontWeight = FontWeight.Bold
@@ -69,19 +72,26 @@ fun MessageCard(messages: Messages, onNavigate: (Messages) ->Unit) {
           maxLines = 3
         )
       }
-      /*
-      Spacer(modifier = Modifier.height(2.dp))
-      Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-        Text(
-          text = "Timestamp",
-          color = MaterialTheme.colorScheme.onBackground,
-          fontSize = 18.sp
-        )
-        Text(text =messages.timestamp)
-      }*/
+    }
+    Divider(modifier = Modifier.fillMaxWidth(), thickness = 1.dp)
+    Spacer(modifier = Modifier.height(5.dp))
+    Row(
+      horizontalArrangement = Arrangement.spacedBy(10.dp)
+    ) {
+      Text(
+        text = "Time: ${convertDate(messages.timestamp)}",
+        fontSize = 18.sp,
+        fontWeight = FontWeight.Normal,
+        color = Color.Green
+      )
+      Text(
+        text = "Agent ID: ${messages.agent_id}",
+        fontWeight = FontWeight.Normal
+      )
     }
   }
 }
+
 
 @Preview
 @Composable

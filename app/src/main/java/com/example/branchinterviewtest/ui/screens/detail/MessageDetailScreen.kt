@@ -72,6 +72,7 @@ fun MessageDetailScreen(navController: NavController, messages: Messages, viewMo
       keyboardOptions = KeyboardOptions(
         keyboardType = KeyboardType.Text
       ),
+      singleLine = true,
       label = {
         Text(text = "Enter Message")
       }
